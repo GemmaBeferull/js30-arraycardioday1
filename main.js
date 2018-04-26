@@ -91,22 +91,70 @@ const inventors = [
     // 7. sort Exercise
     // Sort the people alphabetically by last name
         const alphabet = people.sort(function(a, b){
-            return a-b;
-            
+            const personALastName = a.split(', ')[0];
+            const personBLastName = b.split(', ')[0];
+            return personALastName > personBLastName ? 1 : -1;
         });
         
         console.log(alphabet);
 
 
-
-
-    const alpha = people.sort((lastOne, nextOne) => {
-        const [aLast, aFirst] = lastOne.split(', ');
-        const [bLast, bFirst] = nextOne.split(', ');
-        return aLast > bLast ? 1 : -1;
+        const alpha = people.sort((lastOne, nextOne) => {
+            const [aLast, aFirst] = lastOne.split(', ');
+            const [bLast, bFirst] = nextOne.split(', ');
+            return aLast > bLast ? 1 : -1;
       });
       console.log(alpha);
 
+     
+      
+      const alphabetic = people.sort(function(personA, personB){
+          const personALastName = personA.split(', ')[0];
+          const personBLastName = personB.split(', ')[0];
+          if(personALastName > personBLastName) {
+              return 1;
+          } else if (personALastName < personBLastName){
+              return -1;
+          } else {
+              const personAFirstName = personA.split(', ')[1];
+              const personBFirstName = personB.split(', ')[1];
+              if(personAFirstName > personBFirstName) {
+                  return 1;
+  
+              } else if (personAFirstName < personBFirstName) {
+                  return -1;
+              }
+          }
+      });
+      
+      console.table(alphabetic);
+
+
+
+
+       // 8. Reduce Exercise
+    // Sum up the instances of each of these
+        const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+        const transportation = data.reduce(function(obj, item) {
+            if (!obj[item]) {
+              obj[item] = 0;
+            }
+            obj[item]++;
+            return obj;
+            }, {});
+    console.log(transportation);
+
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+
+    const transportation = data.reduce(function (accumulator, currentValue) {
+        if (!accumulator.hasOwnProperty(currentValue)) {
+                accumulator[currentValue] = 0;
+        }
+        accumulator[currentValue]++;
+        return accumulator;
+        }, {});
+        console.log(transportation);
 
 
 
